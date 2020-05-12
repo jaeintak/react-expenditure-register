@@ -35,6 +35,10 @@ $ cd react-simple-expensebook
 $ npm install
 ```
 
+## 과제 제출 방식
+
+[과제 제출 가이드](./submission_guide.md)를 참고해 주세요.
+
 ## 구현 시 참고 사항
 
 - 컴포넌트 스타일링을 하는 방식은 자유입니다. (CSS, SCSS, CSS Modules, styled-components 등)
