@@ -5,7 +5,6 @@
 1. 자신의 컴퓨터에 과제 repository를 bare 옵션으로 clone 합니다.
 
 ![](./guide-images/clone.png)
-![](./guide-images/clone-bare.png)
 
 ```
 $ git clone --bare https://github.com/${패스트캠퍼스계정}/${과제-레포}.git
@@ -18,7 +17,6 @@ $ git clone --bare https://github.com/${패스트캠퍼스계정}/${과제-레�
 3. 다시 terminal로 돌아와, 해당 git 디렉터리로 이동합니다. 그리고, 방금 새롭게 만든 본인의 과제용 repository에 mirror-push를 합니다.
 
 ![](./guide-images/setting-repo.png)
-![](./guide-images/push-mirror.png)
 
 ```
 $ cd ${과제-레포}.git
@@ -40,6 +38,7 @@ $ git clone https://github.com/수강생본인계정/과제-레포.git
 
 6. 과제를 할 때는 master 브랜치가 아니라 **새롭게 생성한 브랜치**에 커밋을 합니다. 변경사항을 한눈에 볼 수 있고 코드리뷰를 쉽게 받기 위함입니다. 과제를 모두 완성하면, Pull Request를 올려 collaborator로 등록된 리뷰어에게 검토를 받으면 됩니다.
 
+![](./guide-images/branch.png)
 ![](./guide-images/pr-1.png)
 ![](./guide-images/pr-2.png)
 
