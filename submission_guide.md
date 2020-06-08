@@ -7,7 +7,7 @@
 ![](./guide-images/clone.png)
 
 ```
-$ git clone --bare https://github.com/${패스트캠퍼스계정}/${과제-레포}.git
+$ git clone --bare https://github.com/Fastcampus-Programming/react-bytedegree-project-2.git
 ```
 
 2. 자신의 github에 과제를 업로드할 repository를 새롭게 생성합니다. 이때, 공개여부를 Private으로 설정합니다.
@@ -19,19 +19,19 @@ $ git clone --bare https://github.com/${패스트캠퍼스계정}/${과제-레�
 ![](./guide-images/setting-repo.png)
 
 ```
-$ cd ${과제-레포}.git
-$ git push --mirror https://github.com/${수강생본인계정}/${과제-레포}.git
+$ cd react-bytedegree-project-2.git
+$ git push --mirror https://github.com/${수강생본인계정}/${본인과제-레포}.git
 ```
 
-4. 방금 전에 이동한 과제-레포.git 디렉터리 삭제합니다. 그리고, 새롭게 생성하여 mirror-push를 한 private repository를 clone 받습니다.
+4. 방금 전에 이동한 react-bytedegree-project-2.git 디렉터리 삭제합니다. 그리고, 새롭게 생성하여 mirror-push를 한 private repository를 clone 받습니다.
 
 ```
 $ cd ..
-$ rm -rf 과제-레포.git
-$ git clone https://github.com/수강생본인계정/과제-레포.git
+$ rm -rf react-bytedegree-project-2.git
+$ git clone https://github.com/수강생본인계정/본인과제-레포.git
 ```
 
-5. github repository의 Settings에서, Manage access로 들어갑니다. 여기서, 해당 과제에 지정된 리뷰어의 이메일 주소(개별 안내될 예정) 및 패스트캠퍼스 공용 계정(help.camp.dev@fastcampus.co.kr)을 collaborator로 추가합니다.
+5. github repository의 Settings에서, Manage access로 들어갑니다. 여기서, 담당 리뷰어의 이메일 주소(리뷰어 매칭 안내메일 참고) 및 패스트캠퍼스 공용 계정(help.camp.dev@fastcampus.co.kr)을 collaborator로 추가합니다.
 
 ![](./guide-images/collaborator-2.png)
 ![](./guide-images/collaborator-3.png)
