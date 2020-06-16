@@ -27,11 +27,10 @@ Todo 아이템보다 조금 더 복잡한 자료를 처리해야 하는 지출 �
 
 ## 개발 환경 설정하기
 
-이 프로젝트를 클론한 뒤, 클론한 프로젝트의 폴더로 가서 의존성 패키지를 설치합니다.
+과제 제출 가이드에 따라 프로젝트를 클론한 뒤, 클론한 프로젝트의 폴더로 가서 의존성 패키지를 설치합니다.
 
 ```
-$ git clone https://github.com/Fastcampus-Programming/react-bytedegree-project-2.git
-$ cd react-bytedegree-project-2
+$ cd 본인과제-레포
 $ npm install
 ```
 
