@@ -23,12 +23,14 @@ $ cd react-bytedegree-project-2.git
 $ git push --mirror https://github.com/${수강생본인계정}/${본인과제-레포}.git
 ```
 
-4. 방금 전에 이동한 react-bytedegree-project-2.git 디렉터리 삭제합니다. 그리고, 새롭게 생성하여 mirror-push를 한 private repository를 clone 받습니다.
+4. 방금 전에 이동한 react-bytedegree-project-2.git 디렉터리 삭제합니다. 그리고, 새롭게 생성하여 mirror-push를 한 private repository를 clone 받은 뒤 의존성패키지를 설치합니다. 
 
 ```
 $ cd ..
 $ rm -rf react-bytedegree-project-2.git
 $ git clone https://github.com/수강생본인계정/본인과제-레포.git
+$ cd 본인과제-레포
+$ npm install
 ```
 
 5. github repository의 Settings에서, Manage access로 들어갑니다. 여기서, 담당 리뷰어의 이메일 주소(리뷰어 매칭 안내메일 참고) 및 패스트캠퍼스 공용 계정(help.camp.dev@fastcampus.co.kr)을 collaborator로 추가합니다.
