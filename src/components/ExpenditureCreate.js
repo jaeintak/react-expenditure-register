@@ -78,7 +78,7 @@ const Input = styled.input`
 	box-sizing: borer-box;
 	width: 120px;
 	${props =>
-		props.price &&
+		props.priceInput &&
 		css`
 			width: 80px;
 		`}
@@ -87,37 +87,41 @@ const Input = styled.input`
 function ExpenditureCreate() {
 	const [open, setOpen] = useState(false);
 	const [text, setText] = useState('');
-	//const [price, setPrice] = useState('');
+	const [price, setPrice] = useState(0);
 	const dispatch = useExpenditureDispatch();
 	const nextId = useExpenditureNextId();
 
 	const onToggle = () => setOpen(!open);
-	const onChange = e => {
+	const onChangeText = e => {
+		console.log(text);
 		setText(e.target.text);
+	};
+	const onChangePrice = e => {
+		setPrice(e.target.price);
 	};
 	const onSubmit = e => {
 		e.preventDefault();
 		dispatch({
-			type: "CREATE",
+			type: 'CREATE',
 			expenditure: {
 				id: nextId.current,
-				category: "미정",
+				category: '미정',
 				color: '#91a7ff',
 				text: text,
-				price: 0,
+				price: price,
 			},
 		});
 		setText('');
-		//setPrice('');
+		setPrice(0);
 		setOpen(false);
-		nextId.current += 1; 
+		nextId.current += 1;
 	};
 
 	return (
 		<>
 			{open && (
 				<InsertFormPositioner>
-					<InsertForm>
+					<InsertForm onSubmit={onSubmit}>
 						<select>
 							<option value="식사">식사</option>
 							<option value="식표품">식료품</option>
@@ -125,13 +129,18 @@ function ExpenditureCreate() {
 							<option value="생활">생활</option>
 							<option value="의료">의료</option>
 						</select>
-						<Input onChange={onChange} placeholder="지출내용을 입력해주세요." />
 						<Input
-							onChange={onChange}
-							price={true}
+							text={text}
+							onChange={onChangeText}
+							placeholder="지출내용을 입력해주세요."
+						/>
+						<Input
+							price={price}
+							onChange={onChangePrice}
+							priceInput={true}
 							placeholder="지출금액을 입력해주세요."
 						/>
-						<button onSubmit={onSubmit}>입력</button>
+						<button>입력</button>
 					</InsertForm>
 				</InsertFormPositioner>
 			)}

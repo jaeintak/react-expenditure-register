@@ -48,6 +48,7 @@ const initialExpenditures = [
 function expenditureReducer(state, action) {
 	switch (action.type) {
 		case 'CREATE':
+			console.log(action.expenditure);
 			return state.concat(action.expenditure);
 		case 'EDIT':
 			return null;
