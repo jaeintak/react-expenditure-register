@@ -61,15 +61,19 @@ function expenditureReducer(state, action) {
 const ExpenditureStateContext = createContext();
 const ExpenditureDispatchContext = createContext();
 const ExpenditureNextIdContext = createContext();
+const ExpenditureCategory = createContext();
 
 export function ExpenditureProvider({ children }) {
 	const [state, dispatch] = useReducer(expenditureReducer, initialExpenditures);
 	const nextId = useRef(7);
+	const category = 
+	
 
 	return (
 		<ExpenditureStateContext.Provider value={state}>
 			<ExpenditureDispatchContext.Provider value={dispatch}>
 				<ExpenditureNextIdContext.Provider value={nextId}>
+					<ExpenditureCategory.Provider value=>
 					{children}
 				</ExpenditureNextIdContext.Provider>
 			</ExpenditureDispatchContext.Provider>
@@ -94,6 +98,13 @@ export function useExpenditureDispatch(){
 }
 export function useExpenditureNextId(){
 	const context = useContext(ExpenditureNextIdContext);
+	if(!context){
+		throw new Error('Cannot find ExpenditureProvider');
+	}
+	return context;
+}
+export function useExpenditureCategory(){
+	const context = useContext(ExpenditureCategory);
 	if(!context){
 		throw new Error('Cannot find ExpenditureProvider');
 	}

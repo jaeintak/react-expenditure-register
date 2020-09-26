@@ -30,6 +30,7 @@ function ExpenditureCategory(){
 		<ExpenditureCategoryBlock>
 			<form >카테고리별로 보기: 
 				<select>
+				<option value = "전체">전체</option>
 				<option value ="식사">식사</option>
 				<option value ="식표품">식료품</option>
 				<option value ="교통">교통</option>

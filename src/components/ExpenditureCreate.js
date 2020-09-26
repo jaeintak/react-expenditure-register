@@ -86,33 +86,70 @@ const Input = styled.input`
 
 function ExpenditureCreate() {
 	const [open, setOpen] = useState(false);
-	const [text, setText] = useState('');
-	const [price, setPrice] = useState(0);
+	const [state, setState] = useState({
+		text: '',
+		price: '',
+		category: '전체',
+	});
 	const dispatch = useExpenditureDispatch();
 	const nextId = useExpenditureNextId();
 
 	const onToggle = () => setOpen(!open);
-	const onChangeText = e => {
-		console.log(text);
-		setText(e.target.text);
+
+	const onChoose = e => {
+		setState({
+			...state,
+			category: e.target.value,
+		});
 	};
-	const onChangePrice = e => {
-		setPrice(e.target.price);
+
+	const onChange = e => {
+		setState({
+			...state,
+			[e.target.name]: e.target.value,
+		});
 	};
+
 	const onSubmit = e => {
 		e.preventDefault();
+		let color ='';
+
+		switch (state.category) {
+			case '식사':
+				color = '#ffec99';
+				break;
+			case '식료품':
+				color = '#d8f5a2';
+				break;
+			case '교통':
+				color = '#ffd8a8';
+				break;
+			case '생활':
+				color = '#e599f7';
+				break;
+			case '의료':
+				color = '#74c0fc';
+				break;
+			default:
+				color = 'white';
+				break;
+		}
+
 		dispatch({
 			type: 'CREATE',
 			expenditure: {
 				id: nextId.current,
-				category: '미정',
-				color: '#91a7ff',
-				text: text,
-				price: price,
+				category: state.category,
+				color: color,
+				text: state.text,
+				price: state.price,
 			},
 		});
-		setText('');
-		setPrice(0);
+		setState({
+			text: '',
+			price: '',
+			category: '전체',
+		});
 		setOpen(false);
 		nextId.current += 1;
 	};
@@ -122,21 +159,24 @@ function ExpenditureCreate() {
 			{open && (
 				<InsertFormPositioner>
 					<InsertForm onSubmit={onSubmit}>
-						<select>
+						<select onChange={onChoose} name="category">
+							<option value="전체">전체</option>
 							<option value="식사">식사</option>
-							<option value="식표품">식료품</option>
+							<option value="식료품">식료품</option>
 							<option value="교통">교통</option>
 							<option value="생활">생활</option>
 							<option value="의료">의료</option>
 						</select>
 						<Input
-							text={text}
-							onChange={onChangeText}
+							name="text"
+							value={state.text}
+							onChange={onChange}
 							placeholder="지출내용을 입력해주세요."
 						/>
 						<Input
-							price={price}
-							onChange={onChangePrice}
+							name="price"
+							value={state.price}
+							onChange={onChange}
 							priceInput={true}
 							placeholder="지출금액을 입력해주세요."
 						/>
