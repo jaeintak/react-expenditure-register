@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import { useExpenditureState } from '../ExpenditureContext';
@@ -29,7 +30,10 @@ h1{
 function ExpenditureHead() {
 	const expenditures = useExpenditureState();
 	let total = 0;
-	expenditures.map(expenditure => total += expenditure.price);
+	expenditures.map(expenditure => {
+		if(expenditure.display) total += expenditure.price;
+		return total;
+	});
 
 
 	const today = new Date();

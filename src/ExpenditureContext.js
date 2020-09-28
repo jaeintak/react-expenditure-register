@@ -7,6 +7,7 @@ const initialExpenditures = [
 		color: '#ffec99',
 		text: '용개반점',
 		price: 7000,
+		display: true,
 	},
 	{
 		id: 2,
@@ -14,6 +15,7 @@ const initialExpenditures = [
 		color: '#d8f5a2',
 		text: '양배추',
 		price: 5000,
+		display: true,
 	},
 	{
 		id: 3,
@@ -21,6 +23,7 @@ const initialExpenditures = [
 		color: '#ffd8a8',
 		text: '택시비',
 		price: 20000,
+		display: true,
 	},
 	{
 		id: 4,
@@ -28,6 +31,7 @@ const initialExpenditures = [
 		color: '#e599f7',
 		text: '관리비',
 		price: 1000000,
+		display: true,
 	},
 	{
 		id: 5,
@@ -35,6 +39,7 @@ const initialExpenditures = [
 		color: '#74c0fc',
 		text: '병원 진료',
 		price: 7000,
+		display: true,
 	},
 	{
 		id: 6,
@@ -42,18 +47,23 @@ const initialExpenditures = [
 		color: '#ffec99',
 		text: '스타벅스',
 		price: 4000,
+		display: true,
 	},
 ];
 
+
 function expenditureReducer(state, action) {
-	switch (action.type) {
+		switch (action.type) {
 		case 'CREATE':
-			console.log(action.expenditure);
 			return state.concat(action.expenditure);
 		case 'EDIT':
 			return null;
+		case 'CHOOSE':
+			return state.filter(expenditure => expenditure.category === action.value);
 		case 'REMOVE':
 			return state.filter(expenditure => expenditure.id !== action.id);
+		case 'RESET':
+			return state;
 		default:
 			throw new Error(`Unhandled action type: ${action.type}`);
 	}
@@ -61,19 +71,14 @@ function expenditureReducer(state, action) {
 const ExpenditureStateContext = createContext();
 const ExpenditureDispatchContext = createContext();
 const ExpenditureNextIdContext = createContext();
-const ExpenditureCategory = createContext();
 
 export function ExpenditureProvider({ children }) {
 	const [state, dispatch] = useReducer(expenditureReducer, initialExpenditures);
 	const nextId = useRef(7);
-	const category = 
-	
-
 	return (
 		<ExpenditureStateContext.Provider value={state}>
 			<ExpenditureDispatchContext.Provider value={dispatch}>
-				<ExpenditureNextIdContext.Provider value={nextId}>
-					<ExpenditureCategory.Provider value=>
+				<ExpenditureNextIdContext.Provider value={nextId}>					
 					{children}
 				</ExpenditureNextIdContext.Provider>
 			</ExpenditureDispatchContext.Provider>
@@ -98,13 +103,6 @@ export function useExpenditureDispatch(){
 }
 export function useExpenditureNextId(){
 	const context = useContext(ExpenditureNextIdContext);
-	if(!context){
-		throw new Error('Cannot find ExpenditureProvider');
-	}
-	return context;
-}
-export function useExpenditureCategory(){
-	const context = useContext(ExpenditureCategory);
 	if(!context){
 		throw new Error('Cannot find ExpenditureProvider');
 	}

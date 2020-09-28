@@ -69,19 +69,24 @@ const Remove = styled.div`
 	}
 `;
 
-function ExpenditureItem({ id, category, color, text, price }) {
+
+function ExpenditureItem({ id, category, color, text, price, display }) {
 	const dispatch = useExpenditureDispatch();
 	const onEdit = () =>
 		dispatch({
 			type: 'EDIT',
 			id,
-		});
+	});		
 	const onRemove = () =>
 		dispatch({
 			type: 'REMOVE',
 			id,
-		});
+	});
+
+
 	return (
+		<>
+		{display &&
 		<ExpenditureItemBlock>
 			<Category color={color}>{category}</Category>
 			<Text>
@@ -96,7 +101,8 @@ function ExpenditureItem({ id, category, color, text, price }) {
 			<Remove onClick={onRemove}>
 				<MdDelete />
 			</Remove>
-		</ExpenditureItemBlock>
+		</ExpenditureItemBlock>}
+		</>
 	);
 }
 

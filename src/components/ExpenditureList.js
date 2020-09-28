@@ -11,7 +11,6 @@ overflow-y: auto;
 
 function ExpenditureList(){
 	const expenditures = useExpenditureState();
-
 	return (
 		<ExpenditureListBlock>
 		{expenditures.map(expenditure =>(
@@ -21,7 +20,8 @@ function ExpenditureList(){
 			category={expenditure.category}
 			color={expenditure.color}
 			text={expenditure.text}
-			price={expenditure.price} />
+			price={expenditure.price}
+			display={expenditure.display} />
 			))}
 		</ExpenditureListBlock>
 	);

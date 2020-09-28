@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import {
-	useExpenditureDispatch,
-	useExpenditureNextId,
-} from '../ExpenditureContext';
+import { useExpenditureDispatch, useExpenditureNextId } from '../ExpenditureContext';
 
 const CircleButton = styled.div`
 	background: #0b7285;
