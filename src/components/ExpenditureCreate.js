@@ -131,7 +131,6 @@ function ExpenditureCreate() {
 				color = 'white';
 				break;
 		}
-
 		dispatch({
 			type: 'CREATE',
 			expenditure: {
@@ -139,7 +138,8 @@ function ExpenditureCreate() {
 				category: state.category,
 				color: color,
 				text: state.text,
-				price: state.price,
+				price: parseInt(state.price),
+				display: true,
 			},
 		});
 		setState({

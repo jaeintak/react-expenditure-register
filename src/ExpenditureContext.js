@@ -51,15 +51,28 @@ const initialExpenditures = [
 	},
 ];
 
-
 function expenditureReducer(state, action) {
-		switch (action.type) {
+	switch (action.type) {
 		case 'CREATE':
 			return state.concat(action.expenditure);
 		case 'EDIT':
-			return null;
+			return state.map(expenditure =>
+				expenditure.id === action.expenditure.id
+					? {
+							...expenditure,
+							category: action.expenditure.category,
+							color: action.expenditure.color,
+							text: action.expenditure.text,
+							price: action.expenditure.price,
+					  }
+					: expenditure
+			);
 		case 'CHOOSE':
-			return state.filter(expenditure => expenditure.category === action.value);
+			return state.map(expenditure =>
+				expenditure.category !== action.value
+					? { ...expenditure, display: false }
+					: expenditure
+			);
 		case 'REMOVE':
 			return state.filter(expenditure => expenditure.id !== action.id);
 		case 'RESET':
@@ -78,7 +91,7 @@ export function ExpenditureProvider({ children }) {
 	return (
 		<ExpenditureStateContext.Provider value={state}>
 			<ExpenditureDispatchContext.Provider value={dispatch}>
-				<ExpenditureNextIdContext.Provider value={nextId}>					
+				<ExpenditureNextIdContext.Provider value={nextId}>
 					{children}
 				</ExpenditureNextIdContext.Provider>
 			</ExpenditureDispatchContext.Provider>
@@ -86,24 +99,24 @@ export function ExpenditureProvider({ children }) {
 	);
 }
 
-export function useExpenditureState(){
+export function useExpenditureState() {
 	const context = useContext(ExpenditureStateContext);
-	if(!context){
+	if (!context) {
 		throw new Error('Cannot find ExpenditureProvider');
 	}
 	return context;
 }
 
-export function useExpenditureDispatch(){
+export function useExpenditureDispatch() {
 	const context = useContext(ExpenditureDispatchContext);
-	if(!context){
+	if (!context) {
 		throw new Error('Cannot find ExpenditureProvider');
 	}
 	return context;
 }
-export function useExpenditureNextId(){
+export function useExpenditureNextId() {
 	const context = useContext(ExpenditureNextIdContext);
-	if(!context){
+	if (!context) {
 		throw new Error('Cannot find ExpenditureProvider');
 	}
 	return context;
