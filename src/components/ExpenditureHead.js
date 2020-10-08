@@ -30,7 +30,7 @@ h1{
 function ExpenditureHead() {
 	const expenditures = useExpenditureState();
 	let total = 0;
-	expenditures.map(expenditure => {
+	expenditures.forEach(expenditure => {
 		if(expenditure.display) total += expenditure.price;
 		return total;
 	});

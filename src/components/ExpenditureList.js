@@ -16,12 +16,7 @@ function ExpenditureList(){
 		{expenditures.map(expenditure =>(
 			<ExpenditureItem
 			key={expenditure.id}
-			id={expenditure.id}
-			category={expenditure.category}
-			color={expenditure.color}
-			text={expenditure.text}
-			price={expenditure.price}
-			display={expenditure.display} />
+			{...expenditure} />
 			))}
 		</ExpenditureListBlock>
 	);
